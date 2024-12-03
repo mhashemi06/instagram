@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_app/constant/constant.dart';
 import 'package:instagram_app/screens/login_screen.dart';
+import 'package:instagram_app/screens/main_screen.dart';
 import 'package:instagram_app/screens/profile_screen.dart';
 import 'package:instagram_app/screens/splash_screen.dart';
 import 'package:instagram_app/screens/switch_account_screen.dart';
@@ -55,6 +56,6 @@ Widget getMaterial() {
                 TextStyle(color: Colors.white, fontFamily: 'GB', fontSize: 16)),
       ),
     ),
-    home: ProfileScreen(),
+    home: MainScreen(),
   );
 }
