@@ -46,6 +46,16 @@ Widget getMaterial() {
         fontFamily: 'SM',
         fontSize: 12,
       ),
+        displaySmall: TextStyle(
+          color: Colors.white,
+          fontFamily: 'GM',
+          fontSize: 14,
+        ),
+        displayLarge: TextStyle(
+          color: Colors.white,
+          fontFamily: 'GR',
+          fontSize: 14,
+        ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
