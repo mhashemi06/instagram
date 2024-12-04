@@ -50,6 +50,11 @@ Widget getMaterial() {
           fontFamily: 'GR',
           fontSize: 14,
         ),
+        headlineMedium: TextStyle(
+          color: Colors.white,
+          fontFamily: 'GB',
+          fontSize: 14,
+        ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(

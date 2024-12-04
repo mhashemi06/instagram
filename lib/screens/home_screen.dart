@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:instagram_app/constant/constant.dart';
 import 'package:instagram_app/screens/widgets/bottom_sheet_widget.dart';
@@ -14,46 +13,84 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<String> contactsName = [
+    'Mojavad_dev',
+    'Mahaa.candle',
+    'Webq.co',
+    'S_mojavad',
+    'germany.lang',
+    'sam_karman',
+    'yassiii05',
+  ];
+  List<String> userName = [
+    'amirAhmadAdibi',
+    'sam_karman',
+    'jewelry88',
+    'ali.mbb',
+    'germany.lang',
+    'sam_karman',
+    'yassiii05',
+    'Mojavad_dev',
+  ];
+  List<String> subtitles = [
+    'برنامه نویس موبایل',
+    'توریست',
+    'طراح جواهرات',
+    'مهندس عمران',
+    'مهندس عمران',
+    'گرافیست',
+    'دکوراسیون داخلی',
+  ];
+  List<String> usersProfile = [
+    'contact0',
+    'contact12',
+    'contact8',
+    'contact9',
+    'contact5',
+    'contact1',
+    'contact10',
+  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: blackColor,
         appBar: _getAppBar(),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
+        body:  CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Container(
+                height: 120,
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                child: SizedBox(
-                  height: 90,
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) {
-                      return SizedBox(
-                        width: 20,
-                      );
-                    },
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return index == 0 ? YourStoryWidget() : _getContentStory();
-                    },
-                  ),
+
+                child: ListView.separated(
+                  separatorBuilder: (context, index) {
+                    return SizedBox(
+                      width: 20,
+                    );
+                  },
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 7,
+                  itemBuilder: (context, index) {
+                    return index == 0
+                        ? YourStoryWidget()
+                        : _getContentStory(contactsName[index], index);
+                  },
                 ),
               ),
-              SizedBox(
-                height: 30,
-              ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: 9,
-                itemBuilder: (context, index) {
-                  return _getPosts();
+            ),
+            // SizedBox(
+            //   height: 30,
+            // ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                childCount: 7,
+                    (context, index) {
+                  return _getPosts(index,userName[index],subtitles[index]);
                 },
-              )
-            ],
-          ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -80,8 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-
-  Widget _getContentStory() {
+  Widget _getContentStory(String name, int index) {
     return Column(
       children: [
         Container(
@@ -99,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(
-                  'assets/images/mohamad.png',
+                  'assets/images/contacts/contact${index > 0 && index < 7 ? index : index + 1}.png',
                 ),
               ),
             ),
@@ -109,21 +145,20 @@ class _HomeScreenState extends State<HomeScreen> {
           height: 10,
         ),
         Text(
-          'Mojavad_dev',
+          name,
           style: TextStyle(color: Colors.white, fontSize: 10, fontFamily: 'GM'),
         )
       ],
     );
   }
 
-
-  Widget _getPosts() {
+  Widget _getPosts(int index,String title,String subtitle) {
     return Column(
       children: [
-        SizedBox(
-          height: 20,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: ProfileInformationWidget(iconName: 'icon_menu.png',title: title,subTitle: subtitle,userPic: usersProfile[index]),
         ),
-        ProfileInformationWidget(iconName: 'icon_menu.png'),
         SizedBox(
           height: 10,
         ),
@@ -136,11 +171,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 top: 0,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: SizedBox(
+                  child:SizedBox(
                     width: 375,
                     height: 394,
                     child: Image.asset(
-                      'assets/images/post_cover.png',
+                    'assets/images/item${index}.png',
                     ),
                   ),
                 ),
@@ -215,10 +250,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             InkWell(
                                 onTap: () {
                                   showModalBottomSheet(
-
                                     barrierColor: Colors.transparent,
-                                    backgroundColor:
-                                    Colors.transparent,
+                                    backgroundColor: Colors.transparent,
                                     context: context,
                                     isScrollControlled: true,
                                     builder: (context) {
@@ -226,9 +259,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                         initialChildSize: 0.4,
                                         minChildSize: 0.2,
                                         maxChildSize: 0.85,
-
                                         builder: (context, scrollController) {
-                                          return ShareBottomSheetWidget(controller: scrollController,);
+                                          return ShareBottomSheetWidget(
+                                            controller: scrollController,
+                                          );
                                         },
                                       );
                                     },
@@ -249,7 +283,10 @@ class _HomeScreenState extends State<HomeScreen> {
               )
             ],
           ),
-        )
+        ),
+        SizedBox(
+          height: 20,
+        ),
       ],
     );
   }

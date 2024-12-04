@@ -20,65 +20,81 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: blackColor,
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: darkGrayColor,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        elevation: 1,
-        onTap: (int index) {
-          setState(() {
-            _selectedBottomNavigationItem = index;
-          });
-        },
-        currentIndex: _selectedBottomNavigationItem,
-        items: [
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/images/icon_home.png',
-            ),
-            activeIcon: Image.asset(
-              'assets/images/icon_active_home.png',
-            ),
-            label: 'Home',
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15),
+          )
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15),
           ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/images/icon_search_navigation.png',
-            ),
-            activeIcon: Image.asset(
-              'assets/images/icon_search_navigation_active.png',
-            ),
-            label: 'Search',
+          child: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: darkGrayColor,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+          
+            elevation: 1,
+            onTap: (int index) {
+              setState(() {
+                _selectedBottomNavigationItem = index;
+              });
+            },
+            currentIndex: _selectedBottomNavigationItem,
+          
+            items: [
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/images/icon_home.png',
+                ),
+                activeIcon: Image.asset(
+                  'assets/images/icon_active_home.png',
+                ),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/images/icon_search_navigation.png',
+                ),
+                activeIcon: Image.asset(
+                  'assets/images/icon_search_navigation_active.png',
+                ),
+                label: 'Search',
+              ),
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/images/icon_add_navigation.png',
+                ),
+                activeIcon: Image.asset(
+                  'assets/images/icon_add_navigation_active.png',
+                ),
+                label: 'Add',
+              ),
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/images/icon_activity_navigation.png',
+                ),
+                activeIcon: Image.asset(
+                  'assets/images/icon_activity_navigation_active.png',
+                ),
+                label: 'Likes',
+              ),
+              BottomNavigationBarItem(
+                icon: _getNavigationProfileIcon(
+                  iconColor: greyColor,
+                ),
+                activeIcon: _getNavigationProfileIcon(
+                  iconColor: pinkColor,
+                ),
+                label: 'Profile',
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/images/icon_add_navigation.png',
-            ),
-            activeIcon: Image.asset(
-              'assets/images/icon_add_navigation_active.png',
-            ),
-            label: 'Add',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/images/icon_activity_navigation.png',
-            ),
-            activeIcon: Image.asset(
-              'assets/images/icon_activity_navigation_active.png',
-            ),
-            label: 'Likes',
-          ),
-          BottomNavigationBarItem(
-            icon: _getNavigationProfileIcon(
-              iconColor: greyColor,
-            ),
-            activeIcon: _getNavigationProfileIcon(
-              iconColor: pinkColor,
-            ),
-            label: 'Profile',
-          ),
-        ],
+        ),
       ),
       body: SafeArea(
         child: IndexedStack(

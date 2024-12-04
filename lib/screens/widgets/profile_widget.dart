@@ -103,12 +103,12 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           width: 18,
                           height: 18,
                           child:
-                              Image.asset('assets/images/icon_developer.png')),
+                              Image.asset('assets/images/icon_location.png')),
                       SizedBox(
                         width: 6,
                       ),
                       Text(
-                        'developer',
+                        'IRAN',
                         style: TextStyle(
                             color: greyColor, fontFamily: 'Gb', fontSize: 14),
                       )

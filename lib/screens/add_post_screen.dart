@@ -99,7 +99,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
       ),
     );
   }
-  
+
   ///=================Image List======================
   Widget _getImageList() {
     return SliverPadding(

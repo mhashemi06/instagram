@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_app/constant/constant.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:instagram_app/screens/widgets/staggerd_content.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -71,7 +72,16 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
                 SliverPadding(
                   padding: EdgeInsets.only(top: 12),
-                  sliver: _getSliverGrid(),
+                  sliver: StaggeredContent(
+                    pattern: [
+                      QuiltedGridTile(2, 1),
+                      QuiltedGridTile(2, 2),
+                      QuiltedGridTile(1, 1),
+                      QuiltedGridTile(1, 1),
+                      QuiltedGridTile(1, 1),
+                    ],
+                    childCount: 10,
+                  ),
                 ),
                 SliverPadding(padding: EdgeInsets.only(bottom: 20))
               ],
@@ -80,35 +90,6 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  SliverGrid _getSliverGrid() {
-    return SliverGrid(
-      delegate: SliverChildBuilderDelegate((context, index) {
-        // return Container();
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: FittedBox(fit: BoxFit.cover,
-            child: Image.asset(
-                'assets/images/search_pictures/${index + 1}.png'),
-          ),
-        );
-      }, childCount: 10),
-      gridDelegate: SliverQuiltedGridDelegate(
-
-        crossAxisCount: 3,
-        mainAxisSpacing: 6,
-        crossAxisSpacing: 6,
-        repeatPattern: QuiltedGridRepeatPattern.inverted,
-        pattern: [
-          QuiltedGridTile(2, 1),
-          QuiltedGridTile(2, 2),
-          QuiltedGridTile(1, 1),
-          QuiltedGridTile(1, 1),
-          QuiltedGridTile(1, 1),
-        ],
-      ),
-
-    );
-  }
 
   Widget _getCategorySearch() {
     return SizedBox(
