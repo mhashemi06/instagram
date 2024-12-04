@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_app/constant/constant.dart';
-import 'package:instagram_app/screens/login_screen.dart';
 import 'package:instagram_app/screens/main_screen.dart';
-import 'package:instagram_app/screens/profile_screen.dart';
-import 'package:instagram_app/screens/splash_screen.dart';
-import 'package:instagram_app/screens/switch_account_screen.dart';
-
-import 'screens/home_screen.dart';
 
 void main() {
   runApp(InstagramApp());
@@ -42,10 +36,10 @@ Widget getMaterial() {
           fontSize: 12,
         ),
         displayMedium: TextStyle(
-        color: greyColor,
-        fontFamily: 'SM',
-        fontSize: 12,
-      ),
+          color: greyColor,
+          fontFamily: 'SM',
+          fontSize: 12,
+        ),
         displaySmall: TextStyle(
           color: Colors.white,
           fontFamily: 'GM',
@@ -59,11 +53,16 @@ Widget getMaterial() {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-            backgroundColor: pinkColor,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            textStyle:
-                TextStyle(color: Colors.white, fontFamily: 'GB', fontSize: 16)),
+          backgroundColor: pinkColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          textStyle: TextStyle(
+            color: Colors.white,
+            fontFamily: 'GB',
+            fontSize: 16,
+          ),
+        ),
       ),
     ),
     home: MainScreen(),
