@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:instagram_app/constant/constant.dart';
 
@@ -39,48 +41,107 @@ class _ActivityScreenScreenState extends State<ActivityScreenScreen>
             tabs: [
               Tab(
                 child: Text(
-                  'Following',
+                  'You',
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ),
               Tab(
                 child: Text(
-                  'You',
+                  'Requests',
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ),
             ],
           ),
+
           Expanded(
             child: TabBarView(controller: _tabController, children: [
-              Padding(
-                padding:
-                    EdgeInsets.only(top: 30, right: 30, left: 30, bottom: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'New',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    _getFollowing(),
-                    SizedBox(height: 30,),
-                    _getLikePost(),
-                  ],
+            CustomScrollView(
+              slivers: [
+              SliverToBoxAdapter(
+                child:   Padding(
+                  padding:
+                  EdgeInsets.only(top: 30, right: 30, left: 30, bottom: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'New',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _getFollowing(userName: 'Aliii_tech',userProfileName: 'activity3'),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      _getLikePost(userName: 'Arash_313_',userProfileName: 'activity2'),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      Text(
+                        'Today',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _getFollowing2(userName: 'germany.lang',userProfileName: 'activity1'),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _getFollowing2(userName: 'sam_karman',userProfileName: 'activity4'),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      Text(
+                        'This week',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _getFollowing(userName: 'Yasin.3aberi',userProfileName: 'activity5'),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      _getLikePost(userName: 'sam_313_',userProfileName: 'activity6'),
+
+                      SizedBox(
+                        height: 30,
+                      ),
+                      _getLikePost(userName: 'abed_747_',userProfileName: 'activity1'),
+                      SizedBox(
+                        height: 50,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Container(),
-            ]),
+              )
+              ],
+            ),
+             CustomScrollView(
+               slivers: [
+                 SliverList(delegate: SliverChildBuilderDelegate(
+                   childCount: 10,
+                   (context, index) {
+                     return Padding(
+                       padding:EdgeInsets.all(20,),
+                       child: _getFollowing2(userName: 'user_04$index',userProfileName: 'activity${(index>=0 && index<=6) || index==0? index : 2}'),
+                     );
+                   },
+                 ))
+               ],
+             )
+            ],),
           )
         ],
       )),
     );
   }
 
-  Widget _getFollowing(){
+  Widget _getFollowing({required String userName,required String userProfileName}) {
     return Row(
       children: [
         Container(
@@ -98,7 +159,7 @@ class _ActivityScreenScreenState extends State<ActivityScreenScreen>
           width: 40,
           height: 40,
           child: Image.asset(
-            'assets/images/profile_amirahmad.png',
+            'assets/images/$userProfileName.png',
           ),
         ),
         SizedBox(
@@ -109,22 +170,43 @@ class _ActivityScreenScreenState extends State<ActivityScreenScreen>
           children: [
             Row(
               children: [
-                Text('amirahmadadibii',style:TextStyle(
-                  fontFamily: 'GB',fontSize: 12,color: Colors.white,
-                ),),
-                SizedBox(width: 3,),
-                Text('Started ',style: TextStyle(
-                  fontFamily: 'GR',fontSize: 12,color: Colors.white,
-                ),),
+                Text(
+                  userName,
+                  style: TextStyle(
+                    fontFamily: 'GB',
+                    fontSize: 12,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(
+                  width: 3,
+                ),
+                Text(
+                  'Started ',
+                  style: TextStyle(
+                    fontFamily: 'GR',
+                    fontSize: 12,
+                    color: Colors.white,
+                  ),
+                ),
               ],
             ),
-            SizedBox(height: 6,),
-            Text('following you  3min',style:TextStyle(
-              fontFamily: 'GR',fontSize: 12,color: Colors.white,
-            ),),
+            SizedBox(
+              height: 6,
+            ),
+            Text(
+              'following you  3min',
+              style: TextStyle(
+                fontFamily: 'GR',
+                fontSize: 12,
+                color: Colors.white,
+              ),
+            ),
           ],
         ),
-        SizedBox(width: 35,),
+        SizedBox(
+          width: 35,
+        ),
         Expanded(
           child: SizedBox(
             width: 60,
@@ -134,7 +216,9 @@ class _ActivityScreenScreenState extends State<ActivityScreenScreen>
                 style: OutlinedButton.styleFrom(
                   side: BorderSide(width: 2, color: greyColor),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),),),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                ),
                 child: Text(
                   'Message',
                   style: TextStyle(
@@ -149,7 +233,7 @@ class _ActivityScreenScreenState extends State<ActivityScreenScreen>
     );
   }
 
-  Widget _getLikePost(){
+  Widget _getLikePost({required String userName,required String userProfileName}) {
     return Row(
       children: [
         Container(
@@ -167,7 +251,7 @@ class _ActivityScreenScreenState extends State<ActivityScreenScreen>
           width: 40,
           height: 40,
           child: Image.asset(
-            'assets/images/profile_amirahmad.png',
+            'assets/images/$userProfileName.png',
           ),
         ),
         SizedBox(
@@ -178,40 +262,129 @@ class _ActivityScreenScreenState extends State<ActivityScreenScreen>
           children: [
             Row(
               children: [
-                Text('amirahmadadibii',style:TextStyle(
-                  fontFamily: 'GB',fontSize: 12,color: Colors.white,
-                ),),
-                SizedBox(width: 3,),
-                Text('Started ',style: TextStyle(
-                  fontFamily: 'GR',fontSize: 12,color: Colors.white,
-                ),),
+                Text(
+                  userName,
+                  style: TextStyle(
+                    fontFamily: 'GB',
+                    fontSize: 12,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(
+                  width: 3,
+                ),
+                Text(
+                  'Liked your post | 5 min',
+                  style: TextStyle(
+                    fontFamily: 'GR',
+                    fontSize: 12,
+                    color: Colors.white,
+                  ),
+                ),
               ],
             ),
-            SizedBox(height: 6,),
-            Text('following you  3min',style:TextStyle(
-              fontFamily: 'GR',fontSize: 12,color: Colors.white,
-            ),),
           ],
         ),
-        SizedBox(width: 35,),
+        Spacer(),
         Expanded(
           child: SizedBox(
-            width: 60,
-            height: 40,
-            child: OutlinedButton(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  side: BorderSide(width: 2, color: greyColor),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),),),
-                child: Text(
-                  'Message',
+              width: 60,
+              height: 40,
+              child: Image.asset('assets/images/post1.png')),
+        ),
+      ],
+    );
+  }
+
+  Widget _getFollowing2({required String userName,required String userProfileName}) {
+    return Row(
+      children: [
+        Container(
+          width: 6,
+          height: 6,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: pinkColor,
+          ),
+        ),
+        SizedBox(
+          width: 6,
+        ),
+        Container(
+          width: 40,
+          height: 40,
+          padding: EdgeInsets.all(2),
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: 2,
+              color: pinkColor,
+            ),
+            borderRadius: BorderRadius.circular(10)
+          ),
+          child: Image.asset(
+            'assets/images/$userProfileName.png',
+          ),
+        ),
+        SizedBox(
+          width: 8,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  userName,
                   style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
                     fontFamily: 'GB',
+                    fontSize: 12,
+                    color: Colors.white,
                   ),
-                )),
+                ),
+                SizedBox(
+                  width: 3,
+                ),
+                Text(
+                  'Started ',
+                  style: TextStyle(
+                    fontFamily: 'GR',
+                    fontSize: 12,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 6,
+            ),
+            Text(
+              'following you  3min',
+              style: TextStyle(
+                fontFamily: 'GR',
+                fontSize: 12,
+                color: Colors.white,
+              ),
+            ),
+          ],
+          
+        ),
+        Spacer(),
+        SizedBox(
+          width: 100,
+          height: 38,
+          child: ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(6),
+              ),
+              backgroundColor: pinkColor,
+            ),
+            child: Text(
+              'Follow',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
           ),
         ),
       ],
