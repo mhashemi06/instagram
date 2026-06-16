@@ -25,6 +25,5 @@ A test APK is available for Android devices:
 
 Download APK: https://drive.google.com/file/d/1GCHR1ft_3im7rdw354yxPSc8L7oyirWl/view?usp=drive_link
 
-📌## Notes
-
-This project is a UI clone only and does not include backend integration or real-time data handling.
+## Notes
+📌This project is a UI clone only and does not include backend integration or real-time data handling.
