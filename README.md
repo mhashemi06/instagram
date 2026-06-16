@@ -1,4 +1,4 @@
-##Overview
+## Overview
 This project is a Flutter-based Instagram UI clone focused on building a modern, responsive, and component-driven user interface.
 It was developed as a practice project to improve skills in UI design and Flutter layout implementation.
 
@@ -15,7 +15,7 @@ Bottom Navigation Bar
 Reusable Widgets Architecture
 Clean and Responsive Layout Design
 
-#Tech Stack
+## Tech Stack
 Flutter
 Dart
 Material Design
